@@ -299,7 +299,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -386,6 +386,38 @@
             color: #666;
             font-size: 0.95rem;
             line-height: 1.6;
+        }
+
+        /* About section grid (photo + text) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.4fr;
+            gap: 3rem;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .about-photo-wrap {
+            position: sticky;
+            top: 150px;
+        }
+
+        .about-photo-box {
+            width: 100%;
+            max-width: 380px;
+            margin: 0 auto;
+            aspect-ratio: 3/4;
+            background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);
+        }
+
+        .about-photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
         /* Services Grid */
@@ -597,9 +629,13 @@
                 justify-content: center;
             }
 
-            .about-wrapper {
+            .about-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+
+            .about-photo-wrap {
+                position: static;
             }
 
             .about-boxes {
@@ -665,28 +701,28 @@
     <section id="about">
         <div class="container">
             <h2>About Me</h2>
-        <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: flex-start; width: 100%; box-sizing: border-box;">
+            <div class="about-grid">
                 <!-- Photo -->
-<div style="position: sticky; top: 150px;">
-    <div style="width: 100%; aspect-ratio: 3/4; background: linear-gradient(135deg, #e0e7ff 0%, #dbeafe 100%); border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);">
-        <img src="DSC_5694.jpg" alt="na" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
-    </div>
-</div>
-                
+                <div class="about-photo-wrap">
+                    <div class="about-photo-box">
+                        <img src="DSC_5694.jpg" alt="Cheryl">
+                    </div>
+                </div>
+
                 <!-- Text Content -->
                 <div>
                     <p style="font-size: 1.1rem; color: #555; line-height: 1.9; margin-bottom: 1.5rem;"> I'm a coach who helps ambitious professionals build a path that feels true to them.
                         Whether it's a career change or the deeper personal work underneath it - values, identity, what actually matters to you. I draw on a range of coaching tools and frameworks to help you find your way forward. </p>
-                    
+
                     <p style="font-size: 1.1rem; color: #555; line-height: 1.9; margin-bottom: 1.5rem;">Whether you're navigating a career transition, recovering from burnout, or finally asking "Is there something more?" I'm here to guide you toward answers that stick. Because fulfillment isn't just about the title or salary. It's about alignment with who you are and who you want to become.</p>
-                    
+
                     <!-- LinkedIn Connect -->
                     <div style="margin-top: 2.5rem;">
                         <a href="https://www.linkedin.com/in/cheryltanyn/" target="_blank" style="display: inline-flex; align-items: center; gap: 0.75rem; background-color: #0a66c2; color: white; padding: 0.85rem 1.75rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: all 0.3s; font-size: 0.95rem;">
                             <span>📱</span> Connect with me on LinkedIn
                         </a>
                     </div>
-                    
+
                     <!-- Two Boxes -->
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
                         <!-- Global Perspective -->
@@ -705,7 +741,7 @@
                                 </li>
                             </ul>
                         </div>
-                        
+
                         <!-- Credentials -->
                         <div style="background: #f8f9fa; padding: 2rem; border-radius: 12px; border: 1px solid #eee;">
                             <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: #1a1a1a; font-weight: 700; display: flex; align-items: center; gap: 0.75rem;">
@@ -829,25 +865,18 @@
 
         function handleSubmit(event) {
             event.preventDefault();
-            
+
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const subject = document.getElementById('subject').value;
             const message = document.getElementById('message').value;
-            
-            // Using Formspree - replace YOUR_FORM_ID with your actual Formspree form ID
-            // To get your form ID:
-            // 1. Go to https://formspree.io
-            // 2. Create a free account
-            // 3. Create a new form
-            // 4. Copy the form ID and replace YOUR_FORM_ID below
-            
+
             const formData = new FormData();
             formData.append('name', name);
             formData.append('email', email);
             formData.append('subject', subject);
             formData.append('message', message);
-            
+
             fetch('https://formspree.io/f/mrejyonz', {
                 method: 'POST',
                 body: formData
